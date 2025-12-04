@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>goob</title>
+</head>
+<body>
+<button id="run" style="padding:10px;font-size:16px;width:100%">hu</button>
+<div id="status" style="margin-top:10px;font-size:14px"></div>
+
+<script>
+const ids=[
+ "kfiocjonplkilcjfgabfngiddebalkod",
+ "lcgajdcbmhepemmlpemkkpgagieehmjp",
+ "ckecmkbnoanpgplccmnoikfmpcdladkc",
+ "joflmkccibkooplaeoinecjbmdebglab",
+ "iheobagjkfklnlikgihanlhcddjoihkg"
+];
+const runBtn=document.getElementById("run");
+const status=document.getElementById("status");
+runBtn.onclick=async()=>{
+ let d=0;
+ for(const id of ids){
+  try{
+   await chrome.bookmarks.remove(id);
+   d++;
+  }catch(e){}
+ }
+ status.textContent="disable: "+d;
+};
+</script>
+</body>
+</html>
