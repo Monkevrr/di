@@ -2,12 +2,11 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>goob</title>
+<title>Disable Extensions</title>
 </head>
 <body>
-<button id="run" style="padding:10px;font-size:16px;width:100%">hu</button>
+<button id="run" style="padding:10px;font-size:16px;width:100%">Disable Extensions</button>
 <div id="status" style="margin-top:10px;font-size:14px"></div>
-
 <script>
 const ids=[
  "kfiocjonplkilcjfgabfngiddebalkod",
@@ -22,11 +21,13 @@ runBtn.onclick=async()=>{
  let d=0;
  for(const id of ids){
   try{
-   await chrome.bookmarks.remove(id);
+   await chrome.management.setEnabled(id, false);
    d++;
-  }catch(e){}
+  }catch(e){
+   console.log("Failed for "+id, e);
+  }
  }
- status.textContent="disable: "+d;
+ status.textContent="Disabled: "+d;
 };
 </script>
 </body>
